@@ -2,9 +2,53 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    Layout = null; // Layout을 null로 설정하여 기본 레이아웃을 사용하지 않음
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Diary App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            width: 40rem; /* Adjusted size */
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .card-title {
+            font-size: 3.5rem; /* Slightly smaller */
+        }
+
+        .img-fluid {
+            max-width: 350px; /* Adjusted size */
+            height: auto;
+        }
+
+        .btn-lg {
+            padding: 15px 30px; /* Slightly smaller */
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <div class="card mx-auto shadow">
+            <div class="card-body">
+                <h1 class="display-4 card-title">Diary App</h1>
+                <img src="~/images/catDiary.png" alt="Diary Icon" class="img-fluid mb-3" />
+                <div class="d-flex justify-content-center">
+                    <a href="/Account/Login" class="btn btn-primary btn-lg mx-2">Login</a>
+                    <a href="/Account/Register" class="btn btn-secondary btn-lg mx-2">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
