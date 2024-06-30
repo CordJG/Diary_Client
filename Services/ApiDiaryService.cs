@@ -9,6 +9,8 @@ namespace Diary_Client.Services
     {
         Task<IEnumerable<DiaryDto>> GetUserDiarys(long userId);
         Task CreateEntry(CreateDiaryDto entry);
+        Task UpdateEntry(UpdateDiaryDto entry);
+        Task<DiaryDto> GetDiaryById(long id);
 
     }
     public class ApiDiaryService : IApiDiaryService
@@ -60,6 +62,35 @@ namespace Diary_Client.Services
             var response = await _httpClient.PostAsync("/diary", content);
 
             response.EnsureSuccessStatusCode();
+        }
+
+        public async Task UpdateEntry(UpdateDiaryDto entry)
+        {
+            AddAuthorizationHeader();
+            var entryJson = JsonSerializer.Serialize(entry);
+            var content = new StringContent(entryJson, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PutAsync($"/diary/{entry.Id}", content);
+
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task<DiaryDto> GetDiaryById(long id)
+        {
+            AddAuthorizationHeader();
+            var response = await _httpClient.GetAsync($"/diary/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseData = await response.Content.ReadAsStringAsync();
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                };
+
+                return JsonSerializer.Deserialize<DiaryDto>(responseData, options);
+            }
+
+            return null;
         }
     }
 }

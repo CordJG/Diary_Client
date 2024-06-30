@@ -14,6 +14,7 @@ builder.Services.AddSession(options =>
 {
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // 세션 타임아웃 설정
 });
 
 builder.Services.AddHttpClient("DiaryClient", client =>

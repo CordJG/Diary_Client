@@ -16,6 +16,7 @@
             <th>Title</th>
             <th>Content</th>
             <th>Is Private</th>
+            <th>Actions</th> <!-- Actions 열 추가 -->
         </tr>
     </thead>
     <tbody>
@@ -26,6 +27,10 @@
                 <td>@diary.Title</td>
                 <td>@diary.Content</td>
                 <td>@diary.IsPrivate</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-page="./Edit" asp-route-id="@diary.Id">Edit</a>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="deleteDiary(@diary.Id)">Delete</button>
+                </td> <!-- Actions 열에 수정 및 삭제 버튼 추가 -->
             </tr>
         }
     </tbody>
