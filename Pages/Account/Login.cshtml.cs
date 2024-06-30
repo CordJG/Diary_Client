@@ -29,25 +29,35 @@ namespace Diary_Client.Pages.Account
         {
             if (ModelState.IsValid)
             {
-                var client = _httpClientFactory.CreateClient();
-                var loginData = JsonSerializer.Serialize(new { Username = Input.Username, Password = Input.Password });
+                var client = _httpClientFactory.CreateClient("DiaryClient");
+                var loginData = JsonSerializer.Serialize(new { Email = Input.Email, Password = Input.Password });
                 var content = new StringContent(loginData, Encoding.UTF8, "application/json");
 
-                var response = await client.PostAsync("https://localhost:7215/User/login", content);
+                var response = await client.PostAsync("/auth/login", content);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToPage("/Diary/Index");
-                    /*  var responseData = await response.Content.ReadAsStringAsync();
-                      var token = JsonDocument.Parse(responseData).RootElement.GetProperty("token").GetString();*/
+                    var responseData = await response.Content.ReadAsStringAsync();
+                    var jsonDoc = JsonDocument.Parse(responseData);
+                    var token = jsonDoc.RootElement.GetProperty("token").GetString();
+                    var user = jsonDoc.RootElement.GetProperty("user");
+                    var userId = user.GetProperty("id").GetInt64();
+                    var userEmail = user.GetProperty("email").GetString();
+                    var userName = user.GetProperty("userName").GetString();
+                   
 
-                    /* if (!string.IsNullOrEmpty(token))
-                     {*/
-
-                    /*}*/
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        // 로컬 스토리지에 토큰 저장
+                        HttpContext.Session.SetString("token", token);
+                        HttpContext.Session.SetString("UserId", userId.ToString());
+                        HttpContext.Session.SetString("UserEmail", userEmail);
+                        HttpContext.Session.SetString("UserName", userName);
+                        return RedirectToPage("/Diary/Index");
+                    }
                 }
 
-                ModelState.AddModelError(string.Empty, "Invalid username or password");
+                ModelState.AddModelError(string.Empty, "Invalid email or password");
             }
             return Page();
         }

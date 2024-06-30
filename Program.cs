@@ -4,13 +4,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddHttpClient<ApiDiaryService>(client =>
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+// Add session support
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.AddHttpClient("DiaryClient", client =>
 {
     client.BaseAddress = new Uri("https://localhost:7215"); // 서버의 기본 주소로 설정
 });
 
-builder.Services.AddScoped<IApiDiaryService,ApiDiaryService>();
-
+builder.Services.AddScoped<IApiDiaryService, ApiDiaryService>();
 
 var app = builder.Build();
 
@@ -26,6 +37,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// Add session middleware
+app.UseSession();
 
 app.UseAuthorization();
 

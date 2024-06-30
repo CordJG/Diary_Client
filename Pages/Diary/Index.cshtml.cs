@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Diary_Server.Dtos.Diarys;
-using Diary_Server.Services;
-using Microsoft.AspNetCore.Identity;
 using Diary_Client.Services;
+using Diary_Server.Dtos.Diarys;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Diary_Client.Pages.Diary
 {
@@ -22,16 +20,13 @@ namespace Diary_Client.Pages.Diary
         public async Task OnGetAsync()
         {
 
-            string userIdString = "1";
-
-            // string 타입의 userId를 long 타입으로 변환
+            var userIdString = HttpContext.Session.GetString("UserId");
             if (long.TryParse(userIdString, out long userId))
             {
                 Diaries = await _diaryService.GetUserDiarys(userId);
             }
             else
             {
-                // 변환에 실패한 경우, Diaries를 비어있는 상태로 설정
                 Diaries = new List<DiaryDto>();
             }
         }
