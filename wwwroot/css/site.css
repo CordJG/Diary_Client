@@ -1,22 +1,25 @@
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    font-size: 0px;
 }
 
 body {
-  margin-bottom: 60px;
+    font-size: 1rem; /* 기본 폰트 크기를 html 요소의 폰트 크기와 동일하게 설정 */
+    font-family: 'Nanum Pen Script', cursive; /* 원하는 기본 폰트 설정 */
+    background-color: #f7f7f7;
+    margin-bottom: 60px;
+}
+
+@media (min-width: 700px) {
+    html {
+        font-size: 20px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 80%;
 }

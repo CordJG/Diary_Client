@@ -21,6 +21,10 @@ namespace Diary_Client.Pages.Diary
         {
             if (id == null)
             {
+                Diary = new UpdateDiaryDto
+                {
+                    DiaryDate = DateTime.UtcNow
+                };
                 return Page();
             }
 

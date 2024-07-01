@@ -3,32 +3,67 @@
 <head>
     <meta charset="utf-8" />
     <title>Diary App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
     <style>
-        .form-group {
-            margin-bottom: 15px;
+        body {
+            font-family: 'Nanum Pen Script', cursive;
+            background: #f7f7f7;
+            font-size: 1.2rem;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .navbar {
-            justify-content: center;
+            background-color: #6c757d;
+            font-size: 1rem;
         }
 
-        .navbar-nav {
-            flex-direction: row;
+        .navbar-brand {
+            font-size: 1.5rem;
         }
-
-            .navbar-nav .nav-item {
-                margin-left: 15px;
-                margin-right: 15px;
-            }
 
         .container {
-            margin-top: 20px;
+            flex: 1;
+        }
+
+        .card {
+            margin: 20px 0;
+            font-size: 1rem;
+        }
+
+        .card-header {
+            background-color: #343a40;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+        }
+
+        .btn-primary, .btn-secondary {
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="/">Diary App</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
@@ -56,7 +91,8 @@
     <div class="container">
         @RenderBody()
     </div>
-
-    @RenderSection("Scripts", required: false)
+    <footer>
+        <p>&copy; 2024 Diary App. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>

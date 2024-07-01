@@ -1,0 +1,28 @@
+﻿@page "{id:long}"
+@model Diary_Client.Pages.Diary.DetailModel
+
+@{
+    ViewData["Title"] = "Diary Detail";
+}
+
+<link rel="stylesheet" href="~/css/diary.css" />
+
+<div class="container mt-5">
+    <div class="card p-4">
+        <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #343a40; color: white;">
+            <h2 class="card-title mb-0">@Model.Diary.Title</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Date:</strong> @Model.Diary.DiaryDate.ToString("yyyy-MM-dd")</p>
+            <p><strong>Content:</strong></p>
+            <div class="diary-content p-3 mb-3" style="background-color: #f9f9f9; border-radius: 5px;">
+                @Model.Diary.Content
+            </div>
+            <p><strong>Private:</strong> @(Model.Diary.IsPrivate ? "Yes" : "No")</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+            <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.Diary.Id">Edit</a>
+            <a class="btn btn-secondary" asp-page="./Index">Back to List</a>
+        </div>
+    </div>
+</div>

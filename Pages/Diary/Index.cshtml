@@ -5,6 +5,8 @@
     ViewData["Title"] = "My Diaries";
 }
 
+<link rel="stylesheet" href="~/css/diary.css" />
+
 <h2>My Diaries</h2>
 
 <a class="btn btn-primary" asp-page="./Create">Create New Diary</a>
@@ -14,7 +16,6 @@
         <tr>
             <th>Date</th>
             <th>Title</th>
-            <th>Content</th>
             <th>Is Private</th>
             <th>Actions</th> <!-- Actions 열 추가 -->
         </tr>
@@ -23,25 +24,16 @@
         @foreach (var diary in Model.Diaries)
         {
             <tr>
-                <td>@diary.DiaryDate.ToString("yyyy-MM-dd")</td>
-                <td>@diary.Title</td>
-                <td>@diary.Content</td>
-                <td>@diary.IsPrivate</td>
-                <td>
-                    <a class="btn btn-sm btn-warning" asp-page="./Edit" asp-route-id="@diary.Id">Edit</a>
-                    <form method="post" asp-page-handler="Delete" asp-route-id="@diary.Id" class="d-inline" onsubmit="return confirmDelete()">
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                    </form>
+                <td class="date">@diary.DiaryDate.ToString("yyyy-MM-dd")</td>
+                <td class="title" style="width: 50%;">
+                    <a asp-page="./Detail" asp-route-id="@diary.Id">@diary.Title</a>
+                </td>
+                <td class="is-private">@(diary.IsPrivate ? "✔" : "")</td>
+                <td class="actions">
+                    <a class="btn btn-sm btn-warning" asp-page="./Edit" asp-route-id="@diary.Id">수정</a>
+                    <a class="btn btn-sm btn-danger" asp-page-handler="Delete" asp-route-id="@diary.Id" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td> <!-- Actions 열에 수정 및 삭제 버튼 추가 -->
             </tr>
         }
     </tbody>
 </table>
-
-@section Scripts {
-    <script>
-        function confirmDelete() {
-            return confirm('정말 삭제하시겠어요?');
-        }
-    </script>
-}

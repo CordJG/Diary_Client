@@ -3,32 +3,35 @@
 
 @{
     ViewData["Title"] = "Edit Diary";
+    Layout = "_Layout";
 }
 
-<h2>Edit Diary</h2>
+<link rel="stylesheet" href="~/css/diary.css" />
 
+<div class="container">
+    <form method="post">
+        <input type="hidden" asp-for="Diary.Id" /> <!-- 숨겨진 필드 추가 -->
 
-<form method="post">
-    <input type="hidden" asp-for="Diary.Id" /> <!-- Id 속성을 숨김 필드로 추가 -->
-    <div class="form-group">
-        <label asp-for="Diary.DiaryDate"></label>
-        <input asp-for="Diary.DiaryDate" class="form-control" type="date" />
-        <span asp-validation-for="Diary.DiaryDate" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Diary.Title"></label>
-        <input asp-for="Diary.Title" class="form-control" />
-        <span asp-validation-for="Diary.Title" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Diary.Content"></label>
-        <textarea asp-for="Diary.Content" class="form-control"></textarea>
-        <span asp-validation-for="Diary.Content" class="text-danger"></span>
-    </div>
-    <div class="form-group form-check">
-        <input asp-for="Diary.IsPrivate" class="form-check-input" type="checkbox" />
-        <label asp-for="Diary.IsPrivate" class="form-check-label"></label>
-        <span asp-validation-for="Diary.IsPrivate" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
+        <div class="header">
+            <img src="~/images/catDiary.png" alt="Diary Icon" />
+            <div>
+                <input type="text" asp-for="Diary.Title" placeholder="Title" />
+                <div>
+                    <label asp-for="Diary.DiaryDate">Date: </label>
+                    <input type="date" asp-for="Diary.DiaryDate" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <textarea asp-for="Diary.Content" placeholder="Write your diary here..."></textarea>
+        </div>
+
+        <div class="form-group form-check">
+            <input asp-for="Diary.IsPrivate" class="form-check-input" type="checkbox" />
+            <label asp-for="Diary.IsPrivate" class="form-check-label"></label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
