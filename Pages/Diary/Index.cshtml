@@ -29,9 +29,19 @@
                 <td>@diary.IsPrivate</td>
                 <td>
                     <a class="btn btn-sm btn-warning" asp-page="./Edit" asp-route-id="@diary.Id">Edit</a>
-                    <button type="button" class="btn btn-sm btn-danger" onclick="deleteDiary(@diary.Id)">Delete</button>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@diary.Id" class="d-inline" onsubmit="return confirmDelete()">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
                 </td> <!-- Actions 열에 수정 및 삭제 버튼 추가 -->
             </tr>
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        function confirmDelete() {
+            return confirm('정말 삭제하시겠어요?');
+        }
+    </script>
+}

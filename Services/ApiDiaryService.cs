@@ -1,4 +1,5 @@
-﻿using Diary_Server.Dtos.Diarys;
+﻿using Diary_Client.Models;
+using Diary_Server.Dtos.Diarys;
 using Diary_Server.Services;
 using System.Text;
 using System.Text.Json;
@@ -11,7 +12,7 @@ namespace Diary_Client.Services
         Task CreateEntry(CreateDiaryDto entry);
         Task UpdateEntry(UpdateDiaryDto entry);
         Task<DiaryDto> GetDiaryById(long id);
-
+        Task DeleteEntry(long id);
     }
     public class ApiDiaryService : IApiDiaryService
     {
@@ -91,6 +92,14 @@ namespace Diary_Client.Services
             }
 
             return null;
+        }
+
+        public async Task DeleteEntry(long id)
+        {
+            AddAuthorizationHeader();
+            var response = await _httpClient.DeleteAsync($"/diary/{id}");
+
+            response.EnsureSuccessStatusCode();
         }
     }
 }

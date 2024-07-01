@@ -23,6 +23,7 @@ builder.Services.AddHttpClient("DiaryClient", client =>
 });
 
 builder.Services.AddScoped<IApiDiaryService, ApiDiaryService>();
+builder.Services.AddScoped<IApiUserService, ApiUserService>();
 
 var app = builder.Build();
 

@@ -1,5 +1,6 @@
 using Diary_Client.Services;
 using Diary_Server.Dtos.Diarys;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Diary_Client.Pages.Diary
@@ -29,6 +30,12 @@ namespace Diary_Client.Pages.Diary
             {
                 Diaries = new List<DiaryDto>();
             }
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(long id)
+        {
+            await _diaryService.DeleteEntry(id);
+            return RedirectToPage();
         }
     }
 }
