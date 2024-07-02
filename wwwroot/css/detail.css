@@ -1,0 +1,90 @@
+﻿body {
+    font-family: 'Nanum Pen Script', cursive;
+    background-color: #f7f7f7;
+    font-size: 1.2rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: #6c757d;
+    font-size: 1.2rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.container {
+    flex: 1;
+}
+
+.diary-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: whitesmoke;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+   /* background-image: url('/images/diarbackground2.png');*/
+    background-size: contain;
+    background-repeat: repeat;
+    background-position: center center;
+}
+
+.diary-header {
+    background-color: transparent; /* Changed to match surrounding background */
+    color: black;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+    .diary-header h2 {
+        margin: 0;
+        font-size: 2rem;
+    }
+
+.diary-content {
+    padding: 5px;
+    font-size: 1.1rem;
+}
+
+.diary-text {
+    background: transparent; /* Changed to match surrounding background */
+    padding: 1px;
+    border-radius: 10px;
+    margin-bottom: 100px;
+    white-space: pre-wrap; /* ensures long text wraps and preserves whitespace */
+    word-wrap: break-word; /* ensures long text breaks to the next line */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns items to the top */
+    justify-content: flex-start; /* Ensures content starts from the top */
+}
+
+.diary-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.btn-primary, .btn-secondary {
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+}

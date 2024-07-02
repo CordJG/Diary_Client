@@ -5,7 +5,7 @@
     ViewData["Title"] = "My Diaries";
 }
 
-<link rel="stylesheet" href="~/css/diary.css" />
+<link rel="stylesheet" href="~/css/index.css" />
 
 <h2>My Diaries</h2>
 
@@ -31,7 +31,9 @@
                 <td class="is-private">@(diary.IsPrivate ? "✔" : "")</td>
                 <td class="actions">
                     <a class="btn btn-sm btn-warning" asp-page="./Edit" asp-route-id="@diary.Id">수정</a>
-                    <a class="btn btn-sm btn-danger" asp-page-handler="Delete" asp-route-id="@diary.Id" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@diary.Id" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                        <button type="submit" class="btn btn-sm btn-danger">삭제</button>
+                    </form>
                 </td> <!-- Actions 열에 수정 및 삭제 버튼 추가 -->
             </tr>
         }

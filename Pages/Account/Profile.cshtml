@@ -1,0 +1,46 @@
+﻿@page
+@model Diary_Client.Pages.Account.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<link rel="stylesheet" href="~/css/profile.css" />
+
+<div class="container mt-5">
+    <div class="card p-4">
+        <div class="card-header">
+            <h2>@Model.UserProfile.Name's Profile</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Email:</strong> @Model.UserProfile.Email</p>
+            <p><strong>Number of Diaries:</strong> @Model.UserProfile.DiaryCount</p>
+
+            <div id="diaryFolders">
+                @foreach (var year in Model.UserProfile.DiariesByYearMonth.Keys)
+                {
+                    <div class="year-folder">
+                        <input type="checkbox" id="year-@year" />
+                        <label for="year-@year" class="year-label">@year</label>
+                        <div class="year-content">
+                            @foreach (var month in Model.UserProfile.DiariesByYearMonth[year].Keys)
+                            {
+                                <div class="month-folder">
+                                    <input type="checkbox" id="month-@year-@month" />
+                                    <label for="month-@year-@month" class="month-label">@month 월</label>
+                                    <div class="month-content">
+                                        @foreach (var diary in Model.UserProfile.DiariesByYearMonth[year][month])
+                                        {
+                                            <p>
+                                                <a asp-page="/Diary/Detail" asp-route-id="@diary.Id"> [@diary.DiaryDate.ToString("yyyy-MM-dd")] @diary.Title</a>
+                                            </p>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
